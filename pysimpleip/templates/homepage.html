@@ -5,6 +5,23 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello!</h1>
+    <header>
+        <h1>Wellcome to PySimpleIp!</h1>
+    </header>
+
+    <main style="display: flex;">
+        <form action="/" method="post">
+            <input type="text" name="ip" placeholder="Insert a IP adress">
+            <button type="submit">query</button>
+        </form>
+        <div>
+            {{ip_to_show}}
+        </div>
+    </main>
+
+    <footer>
+        <h3>created by Murilo R.B Silva</h3>
+        <a href="https://github.com/MuriloRyan">Github</a>
+    </footer>
 </body>
 </html>

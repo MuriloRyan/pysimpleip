@@ -5,14 +5,13 @@ class IpQueryClient:
         self.url = 'https://api.ipquery.io/'
 
     def own_ip(self) -> requests.Response:
-        req = requests.get(self.url)
+        req = requests.get(self.url + '?format=json')
         return req
     
     def get_ip(self, ip: str) -> requests.Response:
-        req = requests.get(self.url + ip)
+        req = requests.get(self.url + ip + '?format=json')
         return req
     
     def get_more(self, ips: list) -> requests.Response:
-        req = requests.get(self.url + ','.join(ips))
+        req = requests.get(self.url + ','.join(ips) + '?format=json')
         return req
-
