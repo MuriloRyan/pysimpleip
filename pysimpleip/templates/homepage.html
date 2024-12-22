@@ -3,20 +3,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
         <h1>Wellcome to PySimpleIp!</h1>
     </header>
 
-    <main style="display: flex;">
+    <main>
         <form action="/" method="post">
             <input type="text" name="ip" placeholder="Insert a IP adress" value="">
             <button type="submit">query</button>
         </form>
-        <div>
-            {{ip_to_show}}
+        {% if data %}
+        <div class="data">
+            <h2>IP Information for {{ data.ip }}</h2>
+            <p><strong>ISP:</strong> {{ data.isp.isp }}</p>
+            <p><strong>ASN:</strong> {{ data.isp.asn }}</p>
+            <p><strong>Organization:</strong> {{ data.isp.org }}</p>
+            
+            <h3>Location</h3>
+            <p><strong>Country:</strong> {{ data.location.country }} ({{ data.location.country_code }})</p>
+            <p><strong>City:</strong> {{ data.location.city }}</p>
+            <p><strong>State:</strong> {{ data.location.state }}</p>
+            <p><strong>Zip Code:</strong> {{ data.location.zipcode }}</p>
+            <p><strong>Latitude:</strong> {{ data.location.latitude }}</p>
+            <p><strong>Longitude:</strong> {{ data.location.longitude }}</p>
+            <p><strong>Timezone:</strong> {{ data.location.timezone }}</p>
+            <p><strong>Local Time:</strong> {{ data.location.localtime }}</p>
+
+            <h3>Risk Information</h3>
+            <p><strong>Mobile Device:</strong> {{ data.risk.is_mobile }}</p>
+            <p><strong>VPN:</strong> {{ data.risk.is_vpn }}</p>
+            <p><strong>Tor:</strong> {{ data.risk.is_tor }}</p>
+            <p><strong>Proxy:</strong> {{ data.risk.is_proxy }}</p>
+            <p><strong>Datacenter:</strong> {{ data.risk.is_datacenter }}</p>
+            <p><strong>Risk Score:</strong> {{ data.risk.risk_score }}</p>
         </div>
+        {% else %}
+            <p>Enter an IP address to see the information.</p>
+        {% endif %}
     </main>
 
     <footer>

@@ -13,4 +13,4 @@ def homepage():
         ip = request.form['ip']
         query = ipquery.get_ip(ip) if ip != '' else ipquery.own_ip()
     
-    return render_template('homepage.html', ip_to_show=query.json())
+    return render_template('homepage.html', data=query.json())
